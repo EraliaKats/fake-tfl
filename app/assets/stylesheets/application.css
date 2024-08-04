@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+
+ /* app/assets/stylesheets/application.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif; /* Adjust based on the exact font used on TfL */
+    color: #333;
+    line-height: 1.6;
+    margin: 5;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background color */
+  }
+
+  .container {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 20px; /* Space between columns */
+    padding: 20px; /* Padding around the container */
+  }
+
+  .box {
+    display: flexbox;
+    justify-content: center;
+    padding: 20px; /* Padding inside each box */
+    border: 1px solid #ddd; /* Border around each box */
+    border-radius: 8px; /* Rounded corners */
+    color: #fff; /* Text color */
+    text-align: center; /* Center align text */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Font weight */
+  }
+  
+  .circle{
+    color: black;
+    background-color:rgb(255, 206, 0)
+  }
+
+  .hammersmith-city{
+    background-color: rgb(215, 153, 175);
+  }
+
+  .metropolitan{
+    background-color: rgb(117, 16, 86);
+  }
+
+  .time{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr; /* Stack boxes in a single column on small screens */
+    }
+  
+    .box {
+      margin-bottom: 10px; /* Space between stacked boxes on small screens */
+    }
+  }
+

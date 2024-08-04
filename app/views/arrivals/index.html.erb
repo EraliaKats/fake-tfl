@@ -1,2 +1,25 @@
-  <!-- Display predicted arrivals -->
-  <% @predicted_arrivals %>
+<!-- Display error message -->
+<% if flash[:error] %>
+  <h3> <%=flash[:error]%> </h3>
+<% end %>
+
+<!-- Display predicted arrivals -->
+<h1> Great Portland Street Underground Station Arrivals </h1>
+  <h2> Time Now: <%=Time.now.getlocal("+00:00").strftime("%I:%M:%S %p")%> </h2>
+
+  <main class="container"> 
+    <% @predicted_arrivals
+            &.sort_by { | arrival | Time.parse(arrival["expectedArrival"]) }
+            &.each do | arrival | 
+      %>
+        
+            <div class="box <%= arrival["lineId"] %>"> 
+              <%= arrival["platformName"] %> | <%= arrival["lineName"] %> | <%= arrival["destinationName"] %> |
+              <p class="time"> <%= Time.parse(arrival["expectedArrival"]).strftime("%I:%M:%S %p")%> </p>
+            </div>
+        
+      <% end %>
+  </main>
+
+
+   
