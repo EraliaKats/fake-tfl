@@ -9,17 +9,13 @@ RSpec.describe ArrivalsController, type: :controller do
       before do
         stub_request(:get, "https://api.tfl.gov.uk/StopPoint/940GZZLUGPS/Arrivals")
           .with(
-            headers: {
-            'Accept'=>'*/*',
-            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Cache-Control'=>'no-cache',
-            'User-Agent'=>'Ruby'
-            })
+            headers: { 'Cache-Control'=>'no-cache' })
           .to_return(status: 200, body: "", headers: {})
+
+        get :index
       end
 
         it "returns a successful response" do
-          get :index
           expect(response).to be_successful
         end
       end
@@ -28,18 +24,15 @@ RSpec.describe ArrivalsController, type: :controller do
     context "returns some error" do
 
       before do
-        stub_request(:get, "https://api.tfl.gov.uk/StopPoint/nope/Arrivals")
-          .with(
-            headers: {
-              'Cache-Control'=>'no-cache'
-            })
-          .to_return(status: 404)
+        allow(HTTParty)
+          .to receive(:get)
+          .and_return(double(success?: false, response: {"message" => "smth's wrong"}))
       end
 
       # TODO: finish error spec
       it "renders index with error message" do
         get :index
-        expect(error).to eql(flash[:error])
+        expect(flash[:error]).to eql("smth's wrong")
       end
     end
 end
