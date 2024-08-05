@@ -47,7 +47,11 @@ body {
   
   .circle{
     color: black;
-    background-color:rgb(255, 206, 0)
+    background-color:rgb(255, 206, 0);
+
+    .time{
+      border: 1px solid black;
+    }
   }
 
   .hammersmith-city{
