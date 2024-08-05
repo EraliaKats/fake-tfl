@@ -20,6 +20,7 @@ class ArrivalsController < ApplicationController
         response.parsed_response
       else
         flash[:error] = response["message"]
+        response = nil
       end
     rescue StandardError => e
       flash[:error] = "Something went wrong: #{e.message}."
